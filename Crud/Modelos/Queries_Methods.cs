@@ -30,7 +30,7 @@ namespace Crud.Modelos
         public static bool VerifyAlumn(String alumnEnrolledNum)
         {
             var dbCollection = MongoConnection.GetAlumnCollection();
-            var Exist = dbCollection.Find(D => D.Name == alumnEnrolledNum).First();
+            var Exist = dbCollection.Find(D => D.EnrolledNum == alumnEnrolledNum).First();
             if (Exist != null)
             {
                 return true;

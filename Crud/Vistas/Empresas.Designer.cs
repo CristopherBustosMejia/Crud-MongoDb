@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvEmpresas = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mentor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,26 +46,53 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grpBoxOriginInfo = new System.Windows.Forms.GroupBox();
-            this.lblNameO = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtBoxNameO = new System.Windows.Forms.TextBox();
-            this.txtBoxMentorO = new System.Windows.Forms.TextBox();
-            this.txtBoxAddressO = new System.Windows.Forms.TextBox();
             this.txtBoxPhoneO = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtBoxAddressO = new System.Windows.Forms.TextBox();
+            this.txtBoxMentorO = new System.Windows.Forms.TextBox();
+            this.txtBoxNameO = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblNameO = new System.Windows.Forms.Label();
+            this.btnUpdateGrid = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
             this.grpBoxDatos.SuspendLayout();
             this.grpBoxOriginInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvEmpresas
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(374, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(414, 281);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmpresas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre,
+            this.Mentor,
+            this.Address,
+            this.Phone});
+            this.dgvEmpresas.Location = new System.Drawing.Point(374, 12);
+            this.dgvEmpresas.Name = "dgvEmpresas";
+            this.dgvEmpresas.Size = new System.Drawing.Size(444, 281);
+            this.dgvEmpresas.TabIndex = 0;
+            this.dgvEmpresas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpresas_CellContentDoubleClick);
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Mentor
+            // 
+            this.Mentor.HeaderText = "Mentor";
+            this.Mentor.Name = "Mentor";
+            // 
+            // Address
+            // 
+            this.Address.HeaderText = "Direccion";
+            this.Address.Name = "Address";
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Telefono";
+            this.Phone.Name = "Phone";
             // 
             // label1
             // 
@@ -147,7 +178,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(374, 314);
+            this.btnCreate.Location = new System.Drawing.Point(374, 330);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(107, 23);
             this.btnCreate.TabIndex = 6;
@@ -157,7 +188,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(528, 314);
+            this.btnUpdate.Location = new System.Drawing.Point(552, 330);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(107, 23);
             this.btnUpdate.TabIndex = 7;
@@ -167,7 +198,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(681, 314);
+            this.btnDelete.Location = new System.Drawing.Point(709, 330);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(107, 23);
             this.btnDelete.TabIndex = 8;
@@ -192,32 +223,37 @@
             this.grpBoxOriginInfo.TabStop = false;
             this.grpBoxOriginInfo.Text = "Datos Existentes";
             // 
-            // lblNameO
+            // txtBoxPhoneO
             // 
-            this.lblNameO.AutoSize = true;
-            this.lblNameO.Location = new System.Drawing.Point(15, 34);
-            this.lblNameO.Name = "lblNameO";
-            this.lblNameO.Size = new System.Drawing.Size(47, 13);
-            this.lblNameO.TabIndex = 0;
-            this.lblNameO.Text = "Nombre:";
+            this.txtBoxPhoneO.Enabled = false;
+            this.txtBoxPhoneO.Location = new System.Drawing.Point(175, 112);
+            this.txtBoxPhoneO.Name = "txtBoxPhoneO";
+            this.txtBoxPhoneO.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxPhoneO.TabIndex = 7;
             // 
-            // label6
+            // txtBoxAddressO
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Mentor:";
+            this.txtBoxAddressO.Enabled = false;
+            this.txtBoxAddressO.Location = new System.Drawing.Point(175, 83);
+            this.txtBoxAddressO.Name = "txtBoxAddressO";
+            this.txtBoxAddressO.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxAddressO.TabIndex = 6;
             // 
-            // label7
+            // txtBoxMentorO
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 86);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Direccion";
+            this.txtBoxMentorO.Enabled = false;
+            this.txtBoxMentorO.Location = new System.Drawing.Point(175, 57);
+            this.txtBoxMentorO.Name = "txtBoxMentorO";
+            this.txtBoxMentorO.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxMentorO.TabIndex = 5;
+            // 
+            // txtBoxNameO
+            // 
+            this.txtBoxNameO.Enabled = false;
+            this.txtBoxNameO.Location = new System.Drawing.Point(175, 31);
+            this.txtBoxNameO.Name = "txtBoxNameO";
+            this.txtBoxNameO.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxNameO.TabIndex = 4;
             // 
             // label8
             // 
@@ -228,53 +264,59 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Telefono:";
             // 
-            // txtBoxNameO
+            // label7
             // 
-            this.txtBoxNameO.Enabled = false;
-            this.txtBoxNameO.Location = new System.Drawing.Point(175, 31);
-            this.txtBoxNameO.Name = "txtBoxNameO";
-            this.txtBoxNameO.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxNameO.TabIndex = 4;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 86);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(52, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Direccion";
             // 
-            // txtBoxMentorO
+            // label6
             // 
-            this.txtBoxMentorO.Enabled = false;
-            this.txtBoxMentorO.Location = new System.Drawing.Point(175, 57);
-            this.txtBoxMentorO.Name = "txtBoxMentorO";
-            this.txtBoxMentorO.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxMentorO.TabIndex = 5;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 60);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Mentor:";
             // 
-            // txtBoxAddressO
+            // lblNameO
             // 
-            this.txtBoxAddressO.Enabled = false;
-            this.txtBoxAddressO.Location = new System.Drawing.Point(175, 83);
-            this.txtBoxAddressO.Name = "txtBoxAddressO";
-            this.txtBoxAddressO.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxAddressO.TabIndex = 6;
+            this.lblNameO.AutoSize = true;
+            this.lblNameO.Location = new System.Drawing.Point(15, 34);
+            this.lblNameO.Name = "lblNameO";
+            this.lblNameO.Size = new System.Drawing.Size(47, 13);
+            this.lblNameO.TabIndex = 0;
+            this.lblNameO.Text = "Nombre:";
             // 
-            // txtBoxPhoneO
+            // btnUpdateGrid
             // 
-            this.txtBoxPhoneO.Enabled = false;
-            this.txtBoxPhoneO.Location = new System.Drawing.Point(175, 112);
-            this.txtBoxPhoneO.Name = "txtBoxPhoneO";
-            this.txtBoxPhoneO.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxPhoneO.TabIndex = 7;
+            this.btnUpdateGrid.Location = new System.Drawing.Point(374, 301);
+            this.btnUpdateGrid.Name = "btnUpdateGrid";
+            this.btnUpdateGrid.Size = new System.Drawing.Size(442, 23);
+            this.btnUpdateGrid.TabIndex = 15;
+            this.btnUpdateGrid.Text = "Actualizar Tabla";
+            this.btnUpdateGrid.UseVisualStyleBackColor = true;
+            this.btnUpdateGrid.Click += new System.EventHandler(this.btnUpdateGrid_Click);
             // 
             // Empresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 391);
+            this.ClientSize = new System.Drawing.Size(828, 391);
+            this.Controls.Add(this.btnUpdateGrid);
             this.Controls.Add(this.grpBoxOriginInfo);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.grpBoxDatos);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvEmpresas);
             this.Name = "Empresas";
             this.Text = "Empresas";
             this.Load += new System.EventHandler(this.Empresas_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).EndInit();
             this.grpBoxDatos.ResumeLayout(false);
             this.grpBoxDatos.PerformLayout();
             this.grpBoxOriginInfo.ResumeLayout(false);
@@ -285,7 +327,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvEmpresas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -307,5 +349,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblNameO;
+        private System.Windows.Forms.Button btnUpdateGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mentor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
     }
 }

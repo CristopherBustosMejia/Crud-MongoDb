@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAlumns = new System.Windows.Forms.DataGridView();
             this.grpBoxDatos = new System.Windows.Forms.GroupBox();
+            this.txtBoxCompany = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.txtBoxGrupo = new System.Windows.Forms.TextBox();
             this.txtBoxApellidoM = new System.Windows.Forms.TextBox();
             this.txtBoxApellidoP = new System.Windows.Forms.TextBox();
@@ -56,20 +58,33 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtBoxCompany = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.EnrolledNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastNameP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastNameM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnUpdateGrid = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlumns)).BeginInit();
             this.grpBoxDatos.SuspendLayout();
             this.grpBoxObtenido.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvAlumns
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(395, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(393, 376);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvAlumns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAlumns.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.EnrolledNum,
+            this.Nombre,
+            this.LastNameP,
+            this.LastNameM,
+            this.Group,
+            this.Company});
+            this.dgvAlumns.Location = new System.Drawing.Point(382, 12);
+            this.dgvAlumns.Name = "dgvAlumns";
+            this.dgvAlumns.Size = new System.Drawing.Size(643, 376);
+            this.dgvAlumns.TabIndex = 0;
+            this.dgvAlumns.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumns_CellDoubleClick);
             // 
             // grpBoxDatos
             // 
@@ -92,6 +107,22 @@
             this.grpBoxDatos.TabIndex = 1;
             this.grpBoxDatos.TabStop = false;
             this.grpBoxDatos.Text = "Datos ";
+            // 
+            // txtBoxCompany
+            // 
+            this.txtBoxCompany.Location = new System.Drawing.Point(164, 167);
+            this.txtBoxCompany.Name = "txtBoxCompany";
+            this.txtBoxCompany.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxCompany.TabIndex = 11;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 170);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Empresa:";
             // 
             // txtBoxGrupo
             // 
@@ -196,6 +227,7 @@
             // 
             // txtBoxCompanyOb
             // 
+            this.txtBoxCompanyOb.Enabled = false;
             this.txtBoxCompanyOb.Location = new System.Drawing.Point(164, 181);
             this.txtBoxCompanyOb.Name = "txtBoxCompanyOb";
             this.txtBoxCompanyOb.Size = new System.Drawing.Size(100, 20);
@@ -212,6 +244,7 @@
             // 
             // txtBoxGrupoOb
             // 
+            this.txtBoxGrupoOb.Enabled = false;
             this.txtBoxGrupoOb.Location = new System.Drawing.Point(164, 152);
             this.txtBoxGrupoOb.Name = "txtBoxGrupoOb";
             this.txtBoxGrupoOb.Size = new System.Drawing.Size(100, 20);
@@ -219,6 +252,7 @@
             // 
             // txtBoxApellidoMOb
             // 
+            this.txtBoxApellidoMOb.Enabled = false;
             this.txtBoxApellidoMOb.Location = new System.Drawing.Point(164, 121);
             this.txtBoxApellidoMOb.Name = "txtBoxApellidoMOb";
             this.txtBoxApellidoMOb.Size = new System.Drawing.Size(100, 20);
@@ -226,6 +260,7 @@
             // 
             // txtBoxApellidoPOb
             // 
+            this.txtBoxApellidoPOb.Enabled = false;
             this.txtBoxApellidoPOb.Location = new System.Drawing.Point(164, 89);
             this.txtBoxApellidoPOb.Name = "txtBoxApellidoPOb";
             this.txtBoxApellidoPOb.Size = new System.Drawing.Size(100, 20);
@@ -294,7 +329,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(395, 400);
+            this.btnCreate.Location = new System.Drawing.Point(382, 424);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(102, 23);
             this.btnCreate.TabIndex = 3;
@@ -304,7 +339,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(537, 400);
+            this.btnUpdate.Location = new System.Drawing.Point(656, 424);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(102, 23);
             this.btnUpdate.TabIndex = 4;
@@ -314,7 +349,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(686, 400);
+            this.btnDelete.Location = new System.Drawing.Point(919, 424);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 23);
             this.btnDelete.TabIndex = 5;
@@ -322,37 +357,62 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // label11
+            // EnrolledNum
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(10, 170);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(51, 13);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Empresa:";
+            this.EnrolledNum.HeaderText = "Matricula";
+            this.EnrolledNum.Name = "EnrolledNum";
             // 
-            // txtBoxCompany
+            // Nombre
             // 
-            this.txtBoxCompany.Location = new System.Drawing.Point(164, 167);
-            this.txtBoxCompany.Name = "txtBoxCompany";
-            this.txtBoxCompany.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxCompany.TabIndex = 11;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // LastNameP
+            // 
+            this.LastNameP.HeaderText = "Apellido Paterno";
+            this.LastNameP.Name = "LastNameP";
+            // 
+            // LastNameM
+            // 
+            this.LastNameM.HeaderText = "Apellido Materno";
+            this.LastNameM.Name = "LastNameM";
+            // 
+            // Group
+            // 
+            this.Group.HeaderText = "Grupo";
+            this.Group.Name = "Group";
+            // 
+            // Company
+            // 
+            this.Company.HeaderText = "Empresa";
+            this.Company.Name = "Company";
+            // 
+            // btnUpdateGrid
+            // 
+            this.btnUpdateGrid.Location = new System.Drawing.Point(382, 395);
+            this.btnUpdateGrid.Name = "btnUpdateGrid";
+            this.btnUpdateGrid.Size = new System.Drawing.Size(639, 23);
+            this.btnUpdateGrid.TabIndex = 15;
+            this.btnUpdateGrid.Text = "Actualizar Tabla";
+            this.btnUpdateGrid.UseVisualStyleBackColor = true;
+            this.btnUpdateGrid.Click += new System.EventHandler(this.btnUpdateGrid_Click);
             // 
             // Alumnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 438);
+            this.ClientSize = new System.Drawing.Size(1033, 468);
+            this.Controls.Add(this.btnUpdateGrid);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.grpBoxObtenido);
             this.Controls.Add(this.grpBoxDatos);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvAlumns);
             this.Name = "Alumnos";
             this.Text = "Alumnos";
             this.Load += new System.EventHandler(this.Alumnos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlumns)).EndInit();
             this.grpBoxDatos.ResumeLayout(false);
             this.grpBoxDatos.PerformLayout();
             this.grpBoxObtenido.ResumeLayout(false);
@@ -363,7 +423,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAlumns;
         private System.Windows.Forms.GroupBox grpBoxDatos;
         private System.Windows.Forms.TextBox txtBoxGrupo;
         private System.Windows.Forms.TextBox txtBoxApellidoM;
@@ -393,5 +453,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtBoxCompany;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EnrolledNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastNameP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastNameM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Company;
+        private System.Windows.Forms.Button btnUpdateGrid;
     }
 }

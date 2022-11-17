@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Crud.Modelos;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace Crud.Vistas
 {
@@ -20,7 +22,10 @@ namespace Crud.Vistas
 
         private void Reportes_Load(object sender, EventArgs e)
         {
-            
+            var dbCollection = MongoConnection.GetReportCollection();
+            List<ReporteModel> Collection = dbCollection.Find(D => true).ToList();
+            UpdateGrid(Collection);
+
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -64,30 +69,33 @@ namespace Crud.Vistas
             {
                 if (txtBoxCompanyName.Text != "" && txtBoxEnrolledNum.Text != "" && txtBoxProject.Text != "" && txtBoxReportNumO.Text != "" && txtBoxWeek.Text != "" && txtBoxCompanyNameO.Text != "" && txtBoxEnrolledNumO.Text != "" && txtBoxProjectO.Text != "" && txtBoxReportNumO.Text != "" && txtBoxWeekO.Text != "")
                 {
+                    var dbCollection = MongoConnection.GetReportCollection();
+                    ReporteModel originReport = dbCollection.Find(D => D.numReport == txtBoxReportNumO.Text && D.alumnEnrolledN == txtBoxEnrolledNumO.Text).First();
                     ReporteModel report = new ReporteModel()
                     {
+                        Id = originReport.Id,
                         numReport = txtBoxReportNum.Text,
                         alumnEnrolledN = txtBoxEnrolledNum.Text,
                         companyName = txtBoxCompanyName.Text,
                         week = txtBoxWeek.Text,
                         project = txtBoxProject.Text,
                     };
-                    ReporteModel originReport = new ReporteModel()
+                    
+                    if (Queries_Methods.VerifyAlumn(txtBoxEnrolledNum.Text))
                     {
-                        numReport = txtBoxReportNumO.Text,
-                        alumnEnrolledN = txtBoxEnrolledNumO.Text,
-                        companyName = txtBoxCompanyNameO.Text,
-                        week = txtBoxWeekO.Text,
-                        project = txtBoxProjectO.Text,
-                    };
-                    if (Queries_Methods.VerifyAlumn(txtBoxEnrolledNum.Text) && Queries_Methods.VerifyCompany(txtBoxCompanyName.Text))
-                    {
-                        Queries_Methods.ReplaceReport(originReport,report);
-                        MessageBox.Show("Operacion Exitosa");
+                        if (Queries_Methods.VerifyCompany(txtBoxCompanyName.Text))
+                        {
+                            Queries_Methods.ReplaceReport(originReport, report);
+                            MessageBox.Show("Operacion Exitosa");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Verifique si la empresa ingresada existe");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Verifique si el alumno y la empresa ingresados existen");
+                        MessageBox.Show("Verifique si el alumno ingresado existen");
                     }
                 }
                 else
@@ -124,6 +132,39 @@ namespace Crud.Vistas
                 }
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error:");
+            }
+        }
+
+        private void btnUpdateGrid_Click(object sender, EventArgs e)
+        {
+            var dbCollection = MongoConnection.GetReportCollection();
+            List<ReporteModel> Collection = dbCollection.Find(D => true).ToList();
+            UpdateGrid(Collection);
+        }
+        private void UpdateGrid(List<ReporteModel> dbCollection)
+        {
+            dgvReports.Rows.Clear();
+            foreach(ReporteModel db in dbCollection)
+            {
+                dgvReports.Rows.Add(db.numReport,db.alumnEnrolledN,db.companyName,db.week,db.project);
+            }
+        }
+
+        private void dgvReports_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                var dbCollection = MongoConnection.GetReportCollection();
+                ReporteModel report = dbCollection.Find(D => D.numReport == dgvReports.CurrentRow.Cells[0].Value.ToString() && D.alumnEnrolledN == dgvReports.CurrentRow.Cells[1].Value.ToString()).First();
+                txtBoxReportNumO.Text = report.numReport;
+                txtBoxEnrolledNumO.Text = report.alumnEnrolledN;
+                txtBoxCompanyNameO.Text = report.companyName;
+                txtBoxWeekO.Text = report.week;
+                txtBoxProjectO.Text = report.project;
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error:");
             }

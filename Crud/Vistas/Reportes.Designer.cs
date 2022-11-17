@@ -28,18 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvReports = new System.Windows.Forms.DataGridView();
+            this.NumReport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alumnEnrolledN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.week = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.project = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtBoxReportNum = new System.Windows.Forms.TextBox();
-            this.txtBoxEnrolledNum = new System.Windows.Forms.TextBox();
-            this.txtBoxCompanyName = new System.Windows.Forms.TextBox();
-            this.txtBoxWeek = new System.Windows.Forms.TextBox();
             this.txtBoxProject = new System.Windows.Forms.TextBox();
+            this.txtBoxWeek = new System.Windows.Forms.TextBox();
+            this.txtBoxCompanyName = new System.Windows.Forms.TextBox();
+            this.txtBoxEnrolledNum = new System.Windows.Forms.TextBox();
+            this.txtBoxReportNum = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtBoxProjectO = new System.Windows.Forms.TextBox();
             this.txtBoxWeekO = new System.Windows.Forms.TextBox();
@@ -54,18 +59,51 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnUpdateGrid = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvReports
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(333, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(455, 303);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReports.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NumReport,
+            this.alumnEnrolledN,
+            this.companyName,
+            this.week,
+            this.project});
+            this.dgvReports.Location = new System.Drawing.Point(333, 12);
+            this.dgvReports.Name = "dgvReports";
+            this.dgvReports.Size = new System.Drawing.Size(548, 303);
+            this.dgvReports.TabIndex = 0;
+            this.dgvReports.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReports_CellDoubleClick);
+            // 
+            // NumReport
+            // 
+            this.NumReport.HeaderText = "NumReporte";
+            this.NumReport.Name = "NumReport";
+            // 
+            // alumnEnrolledN
+            // 
+            this.alumnEnrolledN.HeaderText = "Matricula Estudiante";
+            this.alumnEnrolledN.Name = "alumnEnrolledN";
+            // 
+            // companyName
+            // 
+            this.companyName.HeaderText = "Empresa";
+            this.companyName.Name = "companyName";
+            // 
+            // week
+            // 
+            this.week.HeaderText = "Semana";
+            this.week.Name = "week";
+            // 
+            // project
+            // 
+            this.project.HeaderText = "Proyecto";
+            this.project.Name = "project";
             // 
             // groupBox1
             // 
@@ -86,41 +124,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
-            // label1
+            // txtBoxProject
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Numero del Reporte:";
+            this.txtBoxProject.Location = new System.Drawing.Point(164, 128);
+            this.txtBoxProject.Name = "txtBoxProject";
+            this.txtBoxProject.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxProject.TabIndex = 9;
             // 
-            // label2
+            // txtBoxWeek
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Numero de Matricula:";
+            this.txtBoxWeek.Location = new System.Drawing.Point(164, 102);
+            this.txtBoxWeek.Name = "txtBoxWeek";
+            this.txtBoxWeek.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxWeek.TabIndex = 8;
             // 
-            // label3
+            // txtBoxCompanyName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 81);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Nombre de la Empresa:";
+            this.txtBoxCompanyName.Location = new System.Drawing.Point(164, 78);
+            this.txtBoxCompanyName.Name = "txtBoxCompanyName";
+            this.txtBoxCompanyName.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxCompanyName.TabIndex = 7;
             // 
-            // label4
+            // txtBoxEnrolledNum
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Semana";
+            this.txtBoxEnrolledNum.Location = new System.Drawing.Point(164, 54);
+            this.txtBoxEnrolledNum.Name = "txtBoxEnrolledNum";
+            this.txtBoxEnrolledNum.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxEnrolledNum.TabIndex = 6;
+            // 
+            // txtBoxReportNum
+            // 
+            this.txtBoxReportNum.Location = new System.Drawing.Point(164, 27);
+            this.txtBoxReportNum.Name = "txtBoxReportNum";
+            this.txtBoxReportNum.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxReportNum.TabIndex = 5;
             // 
             // label5
             // 
@@ -131,40 +168,41 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Proyecto";
             // 
-            // txtBoxReportNum
+            // label4
             // 
-            this.txtBoxReportNum.Location = new System.Drawing.Point(164, 27);
-            this.txtBoxReportNum.Name = "txtBoxReportNum";
-            this.txtBoxReportNum.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxReportNum.TabIndex = 5;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Semana";
             // 
-            // txtBoxEnrolledNum
+            // label3
             // 
-            this.txtBoxEnrolledNum.Location = new System.Drawing.Point(164, 54);
-            this.txtBoxEnrolledNum.Name = "txtBoxEnrolledNum";
-            this.txtBoxEnrolledNum.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxEnrolledNum.TabIndex = 6;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 81);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Nombre de la Empresa:";
             // 
-            // txtBoxCompanyName
+            // label2
             // 
-            this.txtBoxCompanyName.Location = new System.Drawing.Point(164, 78);
-            this.txtBoxCompanyName.Name = "txtBoxCompanyName";
-            this.txtBoxCompanyName.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxCompanyName.TabIndex = 7;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Numero de Matricula:";
             // 
-            // txtBoxWeek
+            // label1
             // 
-            this.txtBoxWeek.Location = new System.Drawing.Point(164, 102);
-            this.txtBoxWeek.Name = "txtBoxWeek";
-            this.txtBoxWeek.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxWeek.TabIndex = 8;
-            // 
-            // txtBoxProject
-            // 
-            this.txtBoxProject.Location = new System.Drawing.Point(164, 128);
-            this.txtBoxProject.Name = "txtBoxProject";
-            this.txtBoxProject.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxProject.TabIndex = 9;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Numero del Reporte:";
             // 
             // groupBox2
             // 
@@ -187,6 +225,7 @@
             // 
             // txtBoxProjectO
             // 
+            this.txtBoxProjectO.Enabled = false;
             this.txtBoxProjectO.Location = new System.Drawing.Point(164, 128);
             this.txtBoxProjectO.Name = "txtBoxProjectO";
             this.txtBoxProjectO.Size = new System.Drawing.Size(100, 20);
@@ -194,6 +233,7 @@
             // 
             // txtBoxWeekO
             // 
+            this.txtBoxWeekO.Enabled = false;
             this.txtBoxWeekO.Location = new System.Drawing.Point(164, 102);
             this.txtBoxWeekO.Name = "txtBoxWeekO";
             this.txtBoxWeekO.Size = new System.Drawing.Size(100, 20);
@@ -201,6 +241,7 @@
             // 
             // txtBoxCompanyNameO
             // 
+            this.txtBoxCompanyNameO.Enabled = false;
             this.txtBoxCompanyNameO.Location = new System.Drawing.Point(164, 78);
             this.txtBoxCompanyNameO.Name = "txtBoxCompanyNameO";
             this.txtBoxCompanyNameO.Size = new System.Drawing.Size(100, 20);
@@ -208,6 +249,7 @@
             // 
             // txtBoxEnrolledNumO
             // 
+            this.txtBoxEnrolledNumO.Enabled = false;
             this.txtBoxEnrolledNumO.Location = new System.Drawing.Point(164, 54);
             this.txtBoxEnrolledNumO.Name = "txtBoxEnrolledNumO";
             this.txtBoxEnrolledNumO.Size = new System.Drawing.Size(100, 20);
@@ -215,6 +257,7 @@
             // 
             // txtBoxReportNumO
             // 
+            this.txtBoxReportNumO.Enabled = false;
             this.txtBoxReportNumO.Location = new System.Drawing.Point(164, 27);
             this.txtBoxReportNumO.Name = "txtBoxReportNumO";
             this.txtBoxReportNumO.Size = new System.Drawing.Size(100, 20);
@@ -267,7 +310,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(333, 331);
+            this.btnCreate.Location = new System.Drawing.Point(333, 349);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(123, 23);
             this.btnCreate.TabIndex = 11;
@@ -277,7 +320,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(506, 331);
+            this.btnUpdate.Location = new System.Drawing.Point(538, 347);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(123, 23);
             this.btnUpdate.TabIndex = 12;
@@ -287,7 +330,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(665, 331);
+            this.btnDelete.Location = new System.Drawing.Point(758, 349);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(123, 23);
             this.btnDelete.TabIndex = 13;
@@ -295,21 +338,32 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnUpdateGrid
+            // 
+            this.btnUpdateGrid.Location = new System.Drawing.Point(333, 320);
+            this.btnUpdateGrid.Name = "btnUpdateGrid";
+            this.btnUpdateGrid.Size = new System.Drawing.Size(548, 23);
+            this.btnUpdateGrid.TabIndex = 14;
+            this.btnUpdateGrid.Text = "Actualizar Tabla";
+            this.btnUpdateGrid.UseVisualStyleBackColor = true;
+            this.btnUpdateGrid.Click += new System.EventHandler(this.btnUpdateGrid_Click);
+            // 
             // Reportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 387);
+            this.ClientSize = new System.Drawing.Size(893, 384);
+            this.Controls.Add(this.btnUpdateGrid);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvReports);
             this.Name = "Reportes";
             this.Text = "Reportes";
             this.Load += new System.EventHandler(this.Reportes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -320,7 +374,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvReports;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -346,5 +400,11 @@
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alumnEnrolledN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn companyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn week;
+        private System.Windows.Forms.DataGridViewTextBoxColumn project;
+        private System.Windows.Forms.Button btnUpdateGrid;
     }
 }

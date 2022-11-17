@@ -21,7 +21,9 @@ namespace Crud.Vistas
         }
         private void Empresas_Load(object sender, EventArgs e)
         {
-            var empresas = MongoConnection.GetCompanyCollection();
+            var dbCollection = MongoConnection.GetCompanyCollection();
+            List<EmpresaModel> Collection = dbCollection.Find(D => true).ToList();
+            UpdateGrid(Collection);
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -57,21 +59,17 @@ namespace Crud.Vistas
             {
                 if (txtBoxAddress.Text != "" && txtBoxMentor.Text != "" && txtBoxName.Text != "" && txtBoxPhone.Text != "" && txtBoxAddressO.Text != "" && txtBoxMentorO.Text != "" && txtBoxNameO.Text != "" && txtBoxPhoneO.Text != "")
                 {
+                    var dbCollection = MongoConnection.GetCompanyCollection();
+                    EmpresaModel originCompany = dbCollection.Find(D => D.Name == txtBoxNameO.Text).First();
                     EmpresaModel company = new EmpresaModel
                     {
+                        Id = originCompany.Id,
                         Name = txtBoxName.Text,
                         Mentor = txtBoxMentor.Text,
                         Address = txtBoxAddress.Text,
                         Phone = txtBoxPhone.Text
                     };
-                    EmpresaModel companyOrigin = new EmpresaModel
-                    {
-                        Name = txtBoxNameO.Text,
-                        Mentor = txtBoxMentorO.Text,
-                        Address = txtBoxAddressO.Text,
-                        Phone = txtBoxPhoneO.Text
-                    };
-                    Queries_Methods.ReplaceCompany(companyOrigin, company);
+                    Queries_Methods.ReplaceCompany(originCompany, company);
                     MessageBox.Show("Operacion Exitosa");
                 }
                 else
@@ -119,6 +117,37 @@ namespace Crud.Vistas
             else
             {
                 e.Handled = false;
+            }
+        }
+        private void UpdateGrid(List<EmpresaModel> dbCollection)
+        {
+            dgvEmpresas.Rows.Clear();
+            foreach (EmpresaModel db in dbCollection)
+            {
+                dgvEmpresas.Rows.Add(db.Name,db.Mentor,db.Address,db.Phone);
+            }
+        }
+
+        private void btnUpdateGrid_Click(object sender, EventArgs e)
+        {
+            var dbCollection = MongoConnection.GetCompanyCollection();
+            List<EmpresaModel> Collection = dbCollection.Find(D => true).ToList();
+            UpdateGrid(Collection);
+        }
+
+        private void dgvEmpresas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                var dbCollection = MongoConnection.GetCompanyCollection();
+                EmpresaModel company = dbCollection.Find(D => D.Name == dgvEmpresas.CurrentRow.Cells[0].Value.ToString()).First();
+                txtBoxNameO.Text = company.Name;
+                txtBoxMentorO.Text = company.Mentor;
+                txtBoxAddressO.Text = company.Address;
+                txtBoxPhoneO.Text = company.Phone;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error:");
             }
         }
     }

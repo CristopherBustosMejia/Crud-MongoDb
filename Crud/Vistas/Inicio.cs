@@ -41,7 +41,8 @@ namespace Crud
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            
+            Reportes formReportes = new Reportes();
+            formReportes.Show();
         }
     }
 }
