@@ -13,33 +13,33 @@ using Crud.Modelos;
 
 namespace Crud.Vistas
 {
-    public partial class Empresas : Form
+    public partial class frmEmpresas : Form
     {
-        public Empresas()
+        public frmEmpresas()
         {
             InitializeComponent();
         }
         private void Empresas_Load(object sender, EventArgs e)
         {
-            var dbCollection = MongoConnection.GetCompanyCollection();
-            List<EmpresaModel> Collection = dbCollection.Find(D => true).ToList();
-            UpdateGrid(Collection);
+            var dbCollection = clsConexionMongo.GetCompanyCollection();
+            List<clsEmpresaModelo> lstColeccion = dbCollection.Find(D => true).ToList();
+            UpdateGrid(lstColeccion);
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
             try
             {
-                if(txtBoxAddress.Text != "" && txtBoxMentor.Text != "" && txtBoxName.Text != "" && txtBoxPhone.Text != "")
+                if(txtBoxDireccion.Text != "" && txtBoxMentor.Text != "" && txtBoxNombre.Text != "" && txtBoxTelefono.Text != "")
                 {
-                    EmpresaModel company = new EmpresaModel
+                    clsEmpresaModelo oEmpresa = new clsEmpresaModelo
                     {
-                        Name = txtBoxName.Text,
+                        Name = txtBoxNombre.Text,
                         Mentor = txtBoxMentor.Text,
-                        Address = txtBoxAddress.Text,
-                        Phone = txtBoxPhone.Text
+                        Address = txtBoxDireccion.Text,
+                        Phone = txtBoxTelefono.Text
                     };
-                    Queries_Methods.CreateCompany(company);
+                    clsMetodos.InsertarEmpresa(oEmpresa);
                     MessageBox.Show("Operacion Exitosa");
                 }
                 else
@@ -57,19 +57,19 @@ namespace Crud.Vistas
         {
             try
             {
-                if (txtBoxAddress.Text != "" && txtBoxMentor.Text != "" && txtBoxName.Text != "" && txtBoxPhone.Text != "" && txtBoxAddressO.Text != "" && txtBoxMentorO.Text != "" && txtBoxNameO.Text != "" && txtBoxPhoneO.Text != "")
+                if (txtBoxDireccion.Text != "" && txtBoxMentor.Text != "" && txtBoxNombre.Text != "" && txtBoxTelefono.Text != "" && txtBoxDireccionO.Text != "" && txtBoxMentorO.Text != "" && txtBoxNombreO.Text != "" && txtBoxTelefonoO.Text != "")
                 {
-                    var dbCollection = MongoConnection.GetCompanyCollection();
-                    EmpresaModel originCompany = dbCollection.Find(D => D.Name == txtBoxNameO.Text).First();
-                    EmpresaModel company = new EmpresaModel
+                    var dbCollection = clsConexionMongo.GetCompanyCollection();
+                    clsEmpresaModelo oEmpresaOriginal = dbCollection.Find(D => D.Name == txtBoxNombreO.Text).First();
+                    clsEmpresaModelo oEmpresa = new clsEmpresaModelo
                     {
-                        Id = originCompany.Id,
-                        Name = txtBoxName.Text,
+                        Id = oEmpresaOriginal.Id,
+                        Name = txtBoxNombre.Text,
                         Mentor = txtBoxMentor.Text,
-                        Address = txtBoxAddress.Text,
-                        Phone = txtBoxPhone.Text
+                        Address = txtBoxDireccion.Text,
+                        Phone = txtBoxTelefono.Text
                     };
-                    Queries_Methods.ReplaceCompany(originCompany, company);
+                    clsMetodos.ReemplazarEmpresa(oEmpresaOriginal, oEmpresa);
                     MessageBox.Show("Operacion Exitosa");
                 }
                 else
@@ -86,16 +86,16 @@ namespace Crud.Vistas
         {
             try
             {
-                if(txtBoxAddressO.Text != "" && txtBoxMentorO.Text != "" && txtBoxNameO.Text != "" && txtBoxPhoneO.Text != "")
+                if(txtBoxDireccionO.Text != "" && txtBoxMentorO.Text != "" && txtBoxNombreO.Text != "" && txtBoxTelefonoO.Text != "")
                 {
-                    EmpresaModel company = new EmpresaModel
+                    clsEmpresaModelo oEmpresa = new clsEmpresaModelo
                     {
-                        Name = txtBoxNameO.Text,
+                        Name = txtBoxNombreO.Text,
                         Mentor = txtBoxMentorO.Text,
-                        Address = txtBoxAddressO.Text,
-                        Phone = txtBoxPhoneO.Text
+                        Address = txtBoxDireccionO.Text,
+                        Phone = txtBoxTelefonoO.Text
                     };
-                    Queries_Methods.DeleteCompany(company);
+                    clsMetodos.EliminarEmpresa(oEmpresa);
                     MessageBox.Show("Operacion exitosa");
                 }
                 else
@@ -119,10 +119,10 @@ namespace Crud.Vistas
                 e.Handled = false;
             }
         }
-        private void UpdateGrid(List<EmpresaModel> dbCollection)
+        private void UpdateGrid(List<clsEmpresaModelo> dbCollection)
         {
             dgvEmpresas.Rows.Clear();
-            foreach (EmpresaModel db in dbCollection)
+            foreach (clsEmpresaModelo db in dbCollection)
             {
                 dgvEmpresas.Rows.Add(db.Name,db.Mentor,db.Address,db.Phone);
             }
@@ -130,21 +130,21 @@ namespace Crud.Vistas
 
         private void btnUpdateGrid_Click(object sender, EventArgs e)
         {
-            var dbCollection = MongoConnection.GetCompanyCollection();
-            List<EmpresaModel> Collection = dbCollection.Find(D => true).ToList();
-            UpdateGrid(Collection);
+            var dbCollection = clsConexionMongo.GetCompanyCollection();
+            List<clsEmpresaModelo> lstColeccion = dbCollection.Find(D => true).ToList();
+            UpdateGrid(lstColeccion);
         }
 
         private void dgvEmpresas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                var dbCollection = MongoConnection.GetCompanyCollection();
-                EmpresaModel company = dbCollection.Find(D => D.Name == dgvEmpresas.CurrentRow.Cells[0].Value.ToString()).First();
-                txtBoxNameO.Text = company.Name;
-                txtBoxMentorO.Text = company.Mentor;
-                txtBoxAddressO.Text = company.Address;
-                txtBoxPhoneO.Text = company.Phone;
+                var dbCollection = clsConexionMongo.GetCompanyCollection();
+                clsEmpresaModelo oEmpresa = dbCollection.Find(D => D.Name == dgvEmpresas.CurrentRow.Cells[0].Value.ToString()).First();
+                txtBoxNombreO.Text = oEmpresa.Name;
+                txtBoxMentorO.Text = oEmpresa.Mentor;
+                txtBoxDireccionO.Text = oEmpresa.Address;
+                txtBoxTelefonoO.Text = oEmpresa.Phone;
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message,"Error:");

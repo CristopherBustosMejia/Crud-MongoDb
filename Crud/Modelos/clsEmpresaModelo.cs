@@ -1,29 +1,27 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using MongoDB.Driver.Linq;
 
 namespace Crud.Modelos
 {
-    public class ReporteModel
+    public class clsEmpresaModelo
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public String Id;
         [BsonElement]
-        public String numReport;
+        public String Name;
         [BsonElement]
-        public String alumnEnrolledN;
+        public String Mentor;
         [BsonElement]
-        public String companyName;
+        public String Address;
         [BsonElement]
-        public String week;
-        [BsonElement]
-        public String project;
+        public String Phone;
     }
 }

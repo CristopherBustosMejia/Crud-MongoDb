@@ -1,6 +1,6 @@
 ﻿namespace Crud.Vistas
 {
-    partial class Reportes
+    partial class frmReportes
     {
         /// <summary>
         /// Required designer variable.

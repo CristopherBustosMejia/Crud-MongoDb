@@ -1,6 +1,6 @@
 ﻿namespace Crud
 {
-    partial class Inicio
+    partial class frmInicio
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAlumn = new System.Windows.Forms.Button();
+            this.btnAlumno = new System.Windows.Forms.Button();
             this.btnEmpresa = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnAlumn
+            // btnAlumno
             // 
-            this.btnAlumn.Location = new System.Drawing.Point(12, 90);
-            this.btnAlumn.Name = "btnAlumn";
-            this.btnAlumn.Size = new System.Drawing.Size(89, 86);
-            this.btnAlumn.TabIndex = 0;
-            this.btnAlumn.Text = "Alumnos";
-            this.btnAlumn.UseVisualStyleBackColor = true;
-            this.btnAlumn.Click += new System.EventHandler(this.btnAlumn_Click);
+            this.btnAlumno.Location = new System.Drawing.Point(12, 90);
+            this.btnAlumno.Name = "btnAlumno";
+            this.btnAlumno.Size = new System.Drawing.Size(89, 86);
+            this.btnAlumno.TabIndex = 0;
+            this.btnAlumno.Text = "Alumnos";
+            this.btnAlumno.UseVisualStyleBackColor = true;
+            this.btnAlumno.Click += new System.EventHandler(this.btnAlumn_Click);
             // 
             // btnEmpresa
             // 
@@ -74,7 +74,7 @@
             this.lblTitle.TabIndex = 3;
             this.lblTitle.Text = "Seleccione una coleccion:";
             // 
-            // Form1
+            // frmInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -82,8 +82,8 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnReportes);
             this.Controls.Add(this.btnEmpresa);
-            this.Controls.Add(this.btnAlumn);
-            this.Name = "Form1";
+            this.Controls.Add(this.btnAlumno);
+            this.Name = "frmInicio";
             this.Text = "                     ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -93,7 +93,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnAlumn;
+        private System.Windows.Forms.Button btnAlumno;
         private System.Windows.Forms.Button btnEmpresa;
         private System.Windows.Forms.Button btnReportes;
         private System.Windows.Forms.Label lblTitle;

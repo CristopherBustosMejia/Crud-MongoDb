@@ -13,18 +13,18 @@ using MongoDB.Driver.Linq;
 
 namespace Crud.Vistas
 {
-    public partial class Reportes : Form
+    public partial class frmReportes : Form
     {
-        public Reportes()
+        public frmReportes()
         {
             InitializeComponent();
         }
 
         private void Reportes_Load(object sender, EventArgs e)
         {
-            var dbCollection = MongoConnection.GetReportCollection();
-            List<ReporteModel> Collection = dbCollection.Find(D => true).ToList();
-            UpdateGrid(Collection);
+            var Colleccion = clsConexionMongo.GetReportCollection();
+            List<clsReporteModelo> lstColeccion = Colleccion.Find(D => true).ToList();
+            UpdateGrid(lstColeccion);
 
         }
 
@@ -34,7 +34,7 @@ namespace Crud.Vistas
             {
                 if (txtBoxCompanyName.Text != "" && txtBoxEnrolledNum.Text != "" && txtBoxProject.Text != "" && txtBoxReportNum.Text != "" && txtBoxWeek.Text != "")
                 {
-                    ReporteModel report = new ReporteModel()
+                    clsReporteModelo oReporte = new clsReporteModelo()
                     {
                         numReport = txtBoxReportNum.Text,
                         alumnEnrolledN = txtBoxEnrolledNum.Text,
@@ -42,9 +42,9 @@ namespace Crud.Vistas
                         week = txtBoxWeek.Text,
                         project = txtBoxProject.Text,
                     };
-                    if (Queries_Methods.VerifyAlumn(txtBoxEnrolledNum.Text) && Queries_Methods.VerifyCompany(txtBoxCompanyName.Text))
+                    if (clsMetodos.VerificarAlumno(txtBoxEnrolledNum.Text) && clsMetodos.VerificarEmpresa(txtBoxCompanyName.Text))
                     {
-                        Queries_Methods.CreateReport(report);
+                        clsMetodos.InsertarReporte(oReporte);
                         MessageBox.Show("Operacion Exitosa");
                     }
                     else
@@ -69,11 +69,11 @@ namespace Crud.Vistas
             {
                 if (txtBoxCompanyName.Text != "" && txtBoxEnrolledNum.Text != "" && txtBoxProject.Text != "" && txtBoxReportNumO.Text != "" && txtBoxWeek.Text != "" && txtBoxCompanyNameO.Text != "" && txtBoxEnrolledNumO.Text != "" && txtBoxProjectO.Text != "" && txtBoxReportNumO.Text != "" && txtBoxWeekO.Text != "")
                 {
-                    var dbCollection = MongoConnection.GetReportCollection();
-                    ReporteModel originReport = dbCollection.Find(D => D.numReport == txtBoxReportNumO.Text && D.alumnEnrolledN == txtBoxEnrolledNumO.Text).First();
-                    ReporteModel report = new ReporteModel()
+                    var dbCollection = clsConexionMongo.GetReportCollection();
+                    clsReporteModelo oReporteOriginal = dbCollection.Find(D => D.numReport == txtBoxReportNumO.Text && D.alumnEnrolledN == txtBoxEnrolledNumO.Text).First();
+                    clsReporteModelo oReporte = new clsReporteModelo()
                     {
-                        Id = originReport.Id,
+                        Id = oReporteOriginal.Id,
                         numReport = txtBoxReportNum.Text,
                         alumnEnrolledN = txtBoxEnrolledNum.Text,
                         companyName = txtBoxCompanyName.Text,
@@ -81,11 +81,11 @@ namespace Crud.Vistas
                         project = txtBoxProject.Text,
                     };
                     
-                    if (Queries_Methods.VerifyAlumn(txtBoxEnrolledNum.Text))
+                    if (clsMetodos.VerificarAlumno(txtBoxEnrolledNum.Text))
                     {
-                        if (Queries_Methods.VerifyCompany(txtBoxCompanyName.Text))
+                        if (clsMetodos.VerificarEmpresa(txtBoxCompanyName.Text))
                         {
-                            Queries_Methods.ReplaceReport(originReport, report);
+                            clsMetodos.ReemplazarReporte(oReporteOriginal, oReporte);
                             MessageBox.Show("Operacion Exitosa");
                         }
                         else
@@ -115,7 +115,7 @@ namespace Crud.Vistas
             {
                 if (txtBoxCompanyNameO.Text != "" && txtBoxEnrolledNumO.Text != "" && txtBoxProjectO.Text != "" && txtBoxReportNumO.Text != "" && txtBoxWeekO.Text != "")
                 {
-                    ReporteModel report = new ReporteModel()
+                    clsReporteModelo oReporte = new clsReporteModelo()
                     {
                         numReport = txtBoxReportNumO.Text,
                         alumnEnrolledN = txtBoxEnrolledNumO.Text,
@@ -123,7 +123,7 @@ namespace Crud.Vistas
                         week = txtBoxWeekO.Text,
                         project = txtBoxProjectO.Text,
                     };
-                    Queries_Methods.DeleteReport(report);
+                    clsMetodos.EliminarReporte(oReporte);
                     MessageBox.Show("Operacion Exitosa");
                 }
                 else
@@ -139,14 +139,14 @@ namespace Crud.Vistas
 
         private void btnUpdateGrid_Click(object sender, EventArgs e)
         {
-            var dbCollection = MongoConnection.GetReportCollection();
-            List<ReporteModel> Collection = dbCollection.Find(D => true).ToList();
-            UpdateGrid(Collection);
+            var dbCollection = clsConexionMongo.GetReportCollection();
+            List<clsReporteModelo> lstColeccion = dbCollection.Find(D => true).ToList();
+            UpdateGrid(lstColeccion);
         }
-        private void UpdateGrid(List<ReporteModel> dbCollection)
+        private void UpdateGrid(List<clsReporteModelo> dbCollection)
         {
             dgvReports.Rows.Clear();
-            foreach(ReporteModel db in dbCollection)
+            foreach(clsReporteModelo db in dbCollection)
             {
                 dgvReports.Rows.Add(db.numReport,db.alumnEnrolledN,db.companyName,db.week,db.project);
             }
@@ -156,13 +156,13 @@ namespace Crud.Vistas
         {
             try
             {
-                var dbCollection = MongoConnection.GetReportCollection();
-                ReporteModel report = dbCollection.Find(D => D.numReport == dgvReports.CurrentRow.Cells[0].Value.ToString() && D.alumnEnrolledN == dgvReports.CurrentRow.Cells[1].Value.ToString()).First();
-                txtBoxReportNumO.Text = report.numReport;
-                txtBoxEnrolledNumO.Text = report.alumnEnrolledN;
-                txtBoxCompanyNameO.Text = report.companyName;
-                txtBoxWeekO.Text = report.week;
-                txtBoxProjectO.Text = report.project;
+                var dbCollection = clsConexionMongo.GetReportCollection();
+                clsReporteModelo oReporte = dbCollection.Find(D => D.numReport == dgvReports.CurrentRow.Cells[0].Value.ToString() && D.alumnEnrolledN == dgvReports.CurrentRow.Cells[1].Value.ToString()).First();
+                txtBoxReportNumO.Text = oReporte.numReport;
+                txtBoxEnrolledNumO.Text = oReporte.alumnEnrolledN;
+                txtBoxCompanyNameO.Text = oReporte.companyName;
+                txtBoxWeekO.Text = oReporte.week;
+                txtBoxProjectO.Text = oReporte.project;
             }
             catch(Exception ex)
             {

@@ -1,6 +1,6 @@
 ﻿namespace Crud.Vistas
 {
-    partial class Empresas
+    partial class frmEmpresas
     {
         /// <summary>
         /// Required designer variable.
@@ -38,23 +38,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grpBoxDatos = new System.Windows.Forms.GroupBox();
-            this.txtBoxPhone = new System.Windows.Forms.TextBox();
-            this.txtBoxAddress = new System.Windows.Forms.TextBox();
+            this.txtBoxTelefono = new System.Windows.Forms.TextBox();
+            this.txtBoxDireccion = new System.Windows.Forms.TextBox();
             this.txtBoxMentor = new System.Windows.Forms.TextBox();
-            this.txtBoxName = new System.Windows.Forms.TextBox();
-            this.btnCreate = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.txtBoxNombre = new System.Windows.Forms.TextBox();
+            this.btnCrear = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.grpBoxOriginInfo = new System.Windows.Forms.GroupBox();
-            this.txtBoxPhoneO = new System.Windows.Forms.TextBox();
-            this.txtBoxAddressO = new System.Windows.Forms.TextBox();
+            this.txtBoxTelefonoO = new System.Windows.Forms.TextBox();
+            this.txtBoxDireccionO = new System.Windows.Forms.TextBox();
             this.txtBoxMentorO = new System.Windows.Forms.TextBox();
-            this.txtBoxNameO = new System.Windows.Forms.TextBox();
+            this.txtBoxNombreO = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblNameO = new System.Windows.Forms.Label();
-            this.btnUpdateGrid = new System.Windows.Forms.Button();
+            this.btnActualizarGrid = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
             this.grpBoxDatos.SuspendLayout();
             this.grpBoxOriginInfo.SuspendLayout();
@@ -132,10 +132,10 @@
             // 
             // grpBoxDatos
             // 
-            this.grpBoxDatos.Controls.Add(this.txtBoxPhone);
-            this.grpBoxDatos.Controls.Add(this.txtBoxAddress);
+            this.grpBoxDatos.Controls.Add(this.txtBoxTelefono);
+            this.grpBoxDatos.Controls.Add(this.txtBoxDireccion);
             this.grpBoxDatos.Controls.Add(this.txtBoxMentor);
-            this.grpBoxDatos.Controls.Add(this.txtBoxName);
+            this.grpBoxDatos.Controls.Add(this.txtBoxNombre);
             this.grpBoxDatos.Controls.Add(this.label1);
             this.grpBoxDatos.Controls.Add(this.label4);
             this.grpBoxDatos.Controls.Add(this.label2);
@@ -147,20 +147,20 @@
             this.grpBoxDatos.TabStop = false;
             this.grpBoxDatos.Text = "Datos:";
             // 
-            // txtBoxPhone
+            // txtBoxTelefono
             // 
-            this.txtBoxPhone.Location = new System.Drawing.Point(175, 132);
-            this.txtBoxPhone.Name = "txtBoxPhone";
-            this.txtBoxPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxPhone.TabIndex = 8;
-            this.txtBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyValidate);
+            this.txtBoxTelefono.Location = new System.Drawing.Point(175, 132);
+            this.txtBoxTelefono.Name = "txtBoxTelefono";
+            this.txtBoxTelefono.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxTelefono.TabIndex = 8;
+            this.txtBoxTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyValidate);
             // 
-            // txtBoxAddress
+            // txtBoxDireccion
             // 
-            this.txtBoxAddress.Location = new System.Drawing.Point(175, 96);
-            this.txtBoxAddress.Name = "txtBoxAddress";
-            this.txtBoxAddress.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxAddress.TabIndex = 7;
+            this.txtBoxDireccion.Location = new System.Drawing.Point(175, 96);
+            this.txtBoxDireccion.Name = "txtBoxDireccion";
+            this.txtBoxDireccion.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxDireccion.TabIndex = 7;
             // 
             // txtBoxMentor
             // 
@@ -169,49 +169,49 @@
             this.txtBoxMentor.Size = new System.Drawing.Size(100, 20);
             this.txtBoxMentor.TabIndex = 6;
             // 
-            // txtBoxName
+            // txtBoxNombre
             // 
-            this.txtBoxName.Location = new System.Drawing.Point(175, 20);
-            this.txtBoxName.Name = "txtBoxName";
-            this.txtBoxName.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxName.TabIndex = 5;
+            this.txtBoxNombre.Location = new System.Drawing.Point(175, 20);
+            this.txtBoxNombre.Name = "txtBoxNombre";
+            this.txtBoxNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxNombre.TabIndex = 5;
             // 
-            // btnCreate
+            // btnCrear
             // 
-            this.btnCreate.Location = new System.Drawing.Point(374, 330);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(107, 23);
-            this.btnCreate.TabIndex = 6;
-            this.btnCreate.Text = "Nuevo";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            this.btnCrear.Location = new System.Drawing.Point(374, 330);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(107, 23);
+            this.btnCrear.TabIndex = 6;
+            this.btnCrear.Text = "Nuevo";
+            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // btnUpdate
+            // btnActualizar
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(552, 330);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(107, 23);
-            this.btnUpdate.TabIndex = 7;
-            this.btnUpdate.Text = "Actualizar";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnActualizar.Location = new System.Drawing.Point(552, 330);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(107, 23);
+            this.btnActualizar.TabIndex = 7;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // btnDelete
+            // btnEliminar
             // 
-            this.btnDelete.Location = new System.Drawing.Point(709, 330);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(107, 23);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "Eliminar";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnEliminar.Location = new System.Drawing.Point(709, 330);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(107, 23);
+            this.btnEliminar.TabIndex = 8;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // grpBoxOriginInfo
             // 
-            this.grpBoxOriginInfo.Controls.Add(this.txtBoxPhoneO);
-            this.grpBoxOriginInfo.Controls.Add(this.txtBoxAddressO);
+            this.grpBoxOriginInfo.Controls.Add(this.txtBoxTelefonoO);
+            this.grpBoxOriginInfo.Controls.Add(this.txtBoxDireccionO);
             this.grpBoxOriginInfo.Controls.Add(this.txtBoxMentorO);
-            this.grpBoxOriginInfo.Controls.Add(this.txtBoxNameO);
+            this.grpBoxOriginInfo.Controls.Add(this.txtBoxNombreO);
             this.grpBoxOriginInfo.Controls.Add(this.label8);
             this.grpBoxOriginInfo.Controls.Add(this.label7);
             this.grpBoxOriginInfo.Controls.Add(this.label6);
@@ -223,21 +223,21 @@
             this.grpBoxOriginInfo.TabStop = false;
             this.grpBoxOriginInfo.Text = "Datos Existentes";
             // 
-            // txtBoxPhoneO
+            // txtBoxTelefonoO
             // 
-            this.txtBoxPhoneO.Enabled = false;
-            this.txtBoxPhoneO.Location = new System.Drawing.Point(175, 112);
-            this.txtBoxPhoneO.Name = "txtBoxPhoneO";
-            this.txtBoxPhoneO.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxPhoneO.TabIndex = 7;
+            this.txtBoxTelefonoO.Enabled = false;
+            this.txtBoxTelefonoO.Location = new System.Drawing.Point(175, 112);
+            this.txtBoxTelefonoO.Name = "txtBoxTelefonoO";
+            this.txtBoxTelefonoO.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxTelefonoO.TabIndex = 7;
             // 
-            // txtBoxAddressO
+            // txtBoxDireccionO
             // 
-            this.txtBoxAddressO.Enabled = false;
-            this.txtBoxAddressO.Location = new System.Drawing.Point(175, 83);
-            this.txtBoxAddressO.Name = "txtBoxAddressO";
-            this.txtBoxAddressO.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxAddressO.TabIndex = 6;
+            this.txtBoxDireccionO.Enabled = false;
+            this.txtBoxDireccionO.Location = new System.Drawing.Point(175, 83);
+            this.txtBoxDireccionO.Name = "txtBoxDireccionO";
+            this.txtBoxDireccionO.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxDireccionO.TabIndex = 6;
             // 
             // txtBoxMentorO
             // 
@@ -247,13 +247,13 @@
             this.txtBoxMentorO.Size = new System.Drawing.Size(100, 20);
             this.txtBoxMentorO.TabIndex = 5;
             // 
-            // txtBoxNameO
+            // txtBoxNombreO
             // 
-            this.txtBoxNameO.Enabled = false;
-            this.txtBoxNameO.Location = new System.Drawing.Point(175, 31);
-            this.txtBoxNameO.Name = "txtBoxNameO";
-            this.txtBoxNameO.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxNameO.TabIndex = 4;
+            this.txtBoxNombreO.Enabled = false;
+            this.txtBoxNombreO.Location = new System.Drawing.Point(175, 31);
+            this.txtBoxNombreO.Name = "txtBoxNombreO";
+            this.txtBoxNombreO.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxNombreO.TabIndex = 4;
             // 
             // label8
             // 
@@ -291,29 +291,29 @@
             this.lblNameO.TabIndex = 0;
             this.lblNameO.Text = "Nombre:";
             // 
-            // btnUpdateGrid
+            // btnActualizarGrid
             // 
-            this.btnUpdateGrid.Location = new System.Drawing.Point(374, 301);
-            this.btnUpdateGrid.Name = "btnUpdateGrid";
-            this.btnUpdateGrid.Size = new System.Drawing.Size(442, 23);
-            this.btnUpdateGrid.TabIndex = 15;
-            this.btnUpdateGrid.Text = "Actualizar Tabla";
-            this.btnUpdateGrid.UseVisualStyleBackColor = true;
-            this.btnUpdateGrid.Click += new System.EventHandler(this.btnUpdateGrid_Click);
+            this.btnActualizarGrid.Location = new System.Drawing.Point(374, 301);
+            this.btnActualizarGrid.Name = "btnActualizarGrid";
+            this.btnActualizarGrid.Size = new System.Drawing.Size(442, 23);
+            this.btnActualizarGrid.TabIndex = 15;
+            this.btnActualizarGrid.Text = "Actualizar Tabla";
+            this.btnActualizarGrid.UseVisualStyleBackColor = true;
+            this.btnActualizarGrid.Click += new System.EventHandler(this.btnUpdateGrid_Click);
             // 
-            // Empresas
+            // frmEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 391);
-            this.Controls.Add(this.btnUpdateGrid);
+            this.Controls.Add(this.btnActualizarGrid);
             this.Controls.Add(this.grpBoxOriginInfo);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnActualizar);
+            this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.grpBoxDatos);
             this.Controls.Add(this.dgvEmpresas);
-            this.Name = "Empresas";
+            this.Name = "frmEmpresas";
             this.Text = "Empresas";
             this.Load += new System.EventHandler(this.Empresas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).EndInit();
@@ -333,23 +333,23 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox grpBoxDatos;
-        private System.Windows.Forms.TextBox txtBoxPhone;
-        private System.Windows.Forms.TextBox txtBoxAddress;
+        private System.Windows.Forms.TextBox txtBoxTelefono;
+        private System.Windows.Forms.TextBox txtBoxDireccion;
         private System.Windows.Forms.TextBox txtBoxMentor;
-        private System.Windows.Forms.TextBox txtBoxName;
-        private System.Windows.Forms.Button btnCreate;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.TextBox txtBoxNombre;
+        private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.GroupBox grpBoxOriginInfo;
-        private System.Windows.Forms.TextBox txtBoxPhoneO;
-        private System.Windows.Forms.TextBox txtBoxAddressO;
+        private System.Windows.Forms.TextBox txtBoxTelefonoO;
+        private System.Windows.Forms.TextBox txtBoxDireccionO;
         private System.Windows.Forms.TextBox txtBoxMentorO;
-        private System.Windows.Forms.TextBox txtBoxNameO;
+        private System.Windows.Forms.TextBox txtBoxNombreO;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblNameO;
-        private System.Windows.Forms.Button btnUpdateGrid;
+        private System.Windows.Forms.Button btnActualizarGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mentor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;

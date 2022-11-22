@@ -15,9 +15,9 @@ using Crud.Vistas;
 
 namespace Crud
 {
-    public partial class Inicio : Form
+    public partial class frmInicio : Form
     {
-        public Inicio()
+        public frmInicio()
         {
             InitializeComponent();
         }
@@ -29,20 +29,20 @@ namespace Crud
 
         private void btnAlumn_Click(object sender, EventArgs e)
         {
-            Alumnos formAlumn = new Alumnos();
-            formAlumn.Show();
+            frmAlumnos frmAlumn = new frmAlumnos();
+            frmAlumn.Show();
         }
 
         private void btnEmpresa_Click(object sender, EventArgs e)
         {
-            Empresas formCompany = new Empresas();
-            formCompany.Show();
+            frmEmpresas frmCompany = new frmEmpresas();
+            frmCompany.Show();
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            Reportes formReportes = new Reportes();
-            formReportes.Show();
+            frmReportes frmReportes = new frmReportes();
+            frmReportes.Show();
         }
     }
 }

@@ -13,18 +13,18 @@ using Crud.Modelos;
 
 namespace Crud
 {
-    public partial class Alumnos : Form
+    public partial class frmAlumnos : Form
     {
         
-        public Alumnos()
+        public frmAlumnos()
         {
             InitializeComponent();
         }
 
         private void Alumnos_Load(object sender, EventArgs e)
         {
-            var dbCollection = MongoConnection.GetAlumnCollection();
-            List<AlumnoModel> Collection = dbCollection.Find(D => true).ToList();
+            var dbCollection = clsConexionMongo.GetAlumnCollection();
+            List<clsAlumnoModelo> Collection = dbCollection.Find(D => true).ToList();
             UpdateGrid(Collection);
             
         }
@@ -33,20 +33,20 @@ namespace Crud
         {
             try
             {
-                if (txtBoxNombre.Text != "" && txtBoxMatricula.Text != "" && txtBoxApellidoP.Text != "" && txtBoxApellidoM.Text != "" && txtBoxGrupo.Text != "" && txtBoxCompany.Text != "")
+                if (txtBoxNombre.Text != "" && txtBoxMatricula.Text != "" && txtBoxApellidoP.Text != "" && txtBoxApellidoM.Text != "" && txtBoxGrupo.Text != "" && txtBoxEmpresa.Text != "")
                 {
-                    AlumnoModel alumn = new AlumnoModel()
+                    clsAlumnoModelo oAlumno = new clsAlumnoModelo()
                     {
                         Name = txtBoxNombre.Text,
                         EnrolledNum = txtBoxMatricula.Text,
                         LastNameP = txtBoxApellidoP.Text,
                         LastNameM = txtBoxApellidoM.Text,
                         Group = txtBoxGrupo.Text,
-                        Company = txtBoxCompany.Text
+                        Company = txtBoxEmpresa.Text
                     };
-                    if (Queries_Methods.VerifyCompany(txtBoxCompany.Text))
+                    if (clsMetodos.VerificarEmpresa(txtBoxEmpresa.Text))
                     {
-                        Queries_Methods.CreateAlumn(alumn);
+                        clsMetodos.InsertarAlumno(oAlumno);
                         MessageBox.Show("Operacion Exitosa");
                     }
                     else
@@ -69,24 +69,24 @@ namespace Crud
         {
             try
             {
-                if (txtBoxNombre.Text != "" && txtBoxMatricula.Text != "" && txtBoxApellidoP.Text != "" && txtBoxApellidoM.Text != "" && txtBoxGrupo.Text != "" && txtBoxCompany.Text != "" && txtBoxNombreOb.Text != "" && txtBoxMatriculaOb.Text != "" && txtBoxApellidoPOb.Text != "" && txtBoxApellidoMOb.Text != "" && txtBoxGrupoOb.Text != "" && txtBoxCompanyOb.Text != "")
+                if (txtBoxNombre.Text != "" && txtBoxMatricula.Text != "" && txtBoxApellidoP.Text != "" && txtBoxApellidoM.Text != "" && txtBoxGrupo.Text != "" && txtBoxEmpresa.Text != "" && txtBoxNombreOb.Text != "" && txtBoxMatriculaOb.Text != "" && txtBoxApellidoPOb.Text != "" && txtBoxApellidoMOb.Text != "" && txtBoxGrupoOb.Text != "" && txtBoxEmpresaOb.Text != "")
                 {
-                    var dbCollection = MongoConnection.GetAlumnCollection();
-                    AlumnoModel originAlumn = dbCollection.Find(D => D.EnrolledNum == dgvAlumns.CurrentRow.Cells[0].Value.ToString()).First();
-                    AlumnoModel alumn = new AlumnoModel()
+                    var dbCollection = clsConexionMongo.GetAlumnCollection();
+                    clsAlumnoModelo oAlumnoOriginal = dbCollection.Find(D => D.EnrolledNum == dgvAlumnos.CurrentRow.Cells[0].Value.ToString()).First();
+                    clsAlumnoModelo oAlumno = new clsAlumnoModelo()
                     {
-                        Id = originAlumn.Id,
+                        Id = oAlumnoOriginal.Id,
                         Name = txtBoxNombre.Text,
                         EnrolledNum = txtBoxMatricula.Text,
                         LastNameP = txtBoxApellidoP.Text,
                         LastNameM = txtBoxApellidoM.Text,
                         Group = txtBoxGrupo.Text,
-                        Company = txtBoxCompany.Text
+                        Company = txtBoxEmpresa.Text
                     };
                     
-                    if (Queries_Methods.VerifyCompany(txtBoxCompany.Text))
+                    if (clsMetodos.VerificarEmpresa(txtBoxEmpresa.Text))
                     {
-                        Queries_Methods.ReplaceAlumn(originAlumn,alumn);
+                        clsMetodos.ReemplazarAlumno(oAlumnoOriginal,oAlumno);
                         MessageBox.Show("Operacion Exitosa");
                     }
                     else
@@ -109,18 +109,18 @@ namespace Crud
         {
             try
             {
-                if (txtBoxNombreOb.Text != "" && txtBoxMatriculaOb.Text != "" && txtBoxApellidoPOb.Text != "" && txtBoxApellidoMOb.Text != "" && txtBoxGrupoOb.Text != "" && txtBoxCompanyOb.Text != "")
+                if (txtBoxNombreOb.Text != "" && txtBoxMatriculaOb.Text != "" && txtBoxApellidoPOb.Text != "" && txtBoxApellidoMOb.Text != "" && txtBoxGrupoOb.Text != "" && txtBoxEmpresaOb.Text != "")
                 {
-                    AlumnoModel alumn = new AlumnoModel()
+                    clsAlumnoModelo oAlumno = new clsAlumnoModelo()
                     {
                         Name = txtBoxNombreOb.Text,
                         EnrolledNum = txtBoxMatriculaOb.Text,
                         LastNameP = txtBoxApellidoPOb.Text,
                         LastNameM = txtBoxApellidoMOb.Text,
                         Group = txtBoxGrupoOb.Text,
-                        Company = txtBoxCompanyOb.Text
+                        Company = txtBoxEmpresaOb.Text
                     };
-                    Queries_Methods.DeleteAlumn(alumn);
+                    clsMetodos.EliminarAlumno(oAlumno);
                     MessageBox.Show("Operacion Exitosa");
                 }
                 else
@@ -133,34 +133,34 @@ namespace Crud
                 MessageBox.Show(ex.Message, "Error:");
             }
         }
-        private void UpdateGrid(List<AlumnoModel> db)
+        private void UpdateGrid(List<clsAlumnoModelo> db)
         {
-            dgvAlumns.Rows.Clear();
-            foreach(AlumnoModel alumn in db)
+            dgvAlumnos.Rows.Clear();
+            foreach(clsAlumnoModelo oAlumno in db)
             {
-                dgvAlumns.Rows.Add(alumn.EnrolledNum, alumn.Name, alumn.LastNameP, alumn.LastNameM,alumn.Group, alumn.Company);
+                dgvAlumnos.Rows.Add(oAlumno.EnrolledNum, oAlumno.Name, oAlumno.LastNameP, oAlumno.LastNameM,oAlumno.Group, oAlumno.Company);
             }
         }
 
         private void btnUpdateGrid_Click(object sender, EventArgs e)
         {
-            var dbCollection = MongoConnection.GetAlumnCollection();
-            List<AlumnoModel> Collection = dbCollection.Find(D => true).ToList();
-            UpdateGrid(Collection);
+            var dbCollection = clsConexionMongo.GetAlumnCollection();
+            List<clsAlumnoModelo> lstColeccion = dbCollection.Find(D => true).ToList();
+            UpdateGrid(lstColeccion);
         }
 
         private void dgvAlumns_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                var dbCollection = MongoConnection.GetAlumnCollection();
-                AlumnoModel alumn = dbCollection.Find(D => D.EnrolledNum == dgvAlumns.CurrentRow.Cells[0].Value.ToString()).First();
+                var dbCollection = clsConexionMongo.GetAlumnCollection();
+                clsAlumnoModelo alumn = dbCollection.Find(D => D.EnrolledNum == dgvAlumnos.CurrentRow.Cells[0].Value.ToString()).First();
                 txtBoxNombreOb.Text = alumn.Name;
                 txtBoxMatriculaOb.Text = alumn.EnrolledNum;
                 txtBoxApellidoPOb.Text = alumn.LastNameP;
                 txtBoxApellidoMOb.Text = alumn.LastNameM;
                 txtBoxGrupoOb.Text = alumn.Group;
-                txtBoxCompanyOb.Text = alumn.Company;
+                txtBoxEmpresaOb.Text = alumn.Company;
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error:");
